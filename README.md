@@ -1,3 +1,3 @@
 # MVPDagger2KotlinExample
-Simple Android client for Meduza.io
+Simple Android client for Meduza.io\
 ![Screenshot](screenshot.png)
