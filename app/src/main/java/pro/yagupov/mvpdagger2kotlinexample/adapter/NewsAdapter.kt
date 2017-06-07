@@ -5,17 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.view_news_item.view.*
-import pro.yagupov.model.repository.remote.News
+import pro.yagupov.model.repository.remote.NewsPreview
 import pro.yagupov.mvpdagger2kotlinexample.R
 import pro.yagupov.mvpdagger2kotlinexample.common.setImage
 import pro.yagupov.mvpdagger2kotlinexample.common.setPassedTime
+import pro.yagupov.mvpdagger2kotlinexample.ui.activity.NewsActivity
 
 /**
  * Created by developer on 01.06.17.
  */
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    var news: MutableList<News> = mutableListOf()
+    var news: MutableList<NewsPreview> = mutableListOf()
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
@@ -28,7 +29,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = news.size
 
-    fun add(pNews: List<News>) {
+    fun add(pNews: List<NewsPreview>) {
         news.addAll(pNews)
         notifyDataSetChanged()
     }
@@ -41,9 +42,10 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         override fun onClick(v: View?) {
+            NewsActivity().show(v!!.context)
         }
 
-        fun bind(news: News) {
+        fun bind(news: NewsPreview) {
             with(news) {
                 itemView.preview.setImage(image?.image1, R.drawable.meduza)
 
@@ -56,7 +58,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
                 } else {
                     itemView.second_title.visibility = View.GONE
                 }
-
 
                 itemView.passed_time.setPassedTime(news.publishedAt)
             }

@@ -4,7 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
-import pro.yagupov.model.repository.remote.News
+import pro.yagupov.model.repository.remote.NewsPreview
 import pro.yagupov.mvpdagger2kotlinexample.R
 import pro.yagupov.mvpdagger2kotlinexample.adapter.NewsAdapter
 import pro.yagupov.mvpdagger2kotlinexample.presentation.presenter.main.MainViewPresenter
@@ -19,9 +19,7 @@ class MainActivity : BaseViewActivity<MainViewPresenter>(), MainView, SwipeRefre
     private var isLastPage = false
 
 
-    override fun getLayoutId(): Int {
-        return R.layout.activity_main
-    }
+    override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun doInject() {
         di().inject(this)
@@ -70,7 +68,7 @@ class MainActivity : BaseViewActivity<MainViewPresenter>(), MainView, SwipeRefre
         }
     }
 
-    override fun showNews(news: List<News>, isLast: Boolean) {
+    override fun showNews(news: List<NewsPreview>, isLast: Boolean) {
         isLoading = false
         isLastPage = isLast
         refresh.isRefreshing = false

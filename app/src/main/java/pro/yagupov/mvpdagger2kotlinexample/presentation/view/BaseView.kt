@@ -8,6 +8,6 @@ import android.os.Bundle
  */
 interface BaseView {
 
-    fun show(contex : Context, arguments : Bundle? = null)
+    fun show(context: Context, arguments : Bundle? = null)
 
 }

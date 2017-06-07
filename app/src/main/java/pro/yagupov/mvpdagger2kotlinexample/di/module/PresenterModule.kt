@@ -4,6 +4,8 @@ import dagger.Module
 import dagger.Provides
 import pro.yagupov.mvpdagger2kotlinexample.presentation.presenter.main.MainViewPresenter
 import pro.yagupov.mvpdagger2kotlinexample.presentation.presenter.main.MainViewPresenterImpl
+import pro.yagupov.mvpdagger2kotlinexample.presentation.presenter.news.NewsPresenter
+import pro.yagupov.mvpdagger2kotlinexample.presentation.presenter.news.NewsPresenterImpl
 
 /**
  * Created by developer on 30.05.17.
@@ -13,4 +15,7 @@ class PresenterModule {
 
     @Provides
     fun providesMainViewPresenter() : MainViewPresenter = MainViewPresenterImpl()
+
+    @Provides
+    fun providesNewsViewPresenter() : NewsPresenter = NewsPresenterImpl()
 }

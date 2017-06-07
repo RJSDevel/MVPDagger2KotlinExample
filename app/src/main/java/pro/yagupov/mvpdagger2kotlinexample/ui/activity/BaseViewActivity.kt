@@ -18,26 +18,24 @@ abstract class BaseViewActivity<P : BasePresenter> : AppCompatActivity(), BaseVi
     @Inject
     lateinit var pr: P
 
-    override fun show(contex: Context, arguments: Bundle?) {
-        val intent = Intent(contex, javaClass)
-        arguments?.let { intent.putExtras(arguments) }
-        startActivity(intent)
+    override fun show(context: Context, arguments: Bundle?) {
+        val intent = Intent(context, javaClass)
+        arguments?.putAll(arguments)
+        context.startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        doInject()
         setContentView(getLayoutId())
 
-        pr.let {
-            pr.attachView(this)
-        }
+        doInject()
+
+        pr!!.attachView(this)
 
         onInit()
 
-        pr.let {
-            pr.onCreate()
-        }
+        pr!!.onCreate()
+
     }
 
     protected fun argument(name: String): Any {

@@ -1,7 +1,7 @@
 package pro.yagupov.model.repository
 
 import io.reactivex.Observable
-import pro.yagupov.model.repository.remote.News
+import pro.yagupov.model.repository.remote.NewsPreview
 import pro.yagupov.model.repository.remote.RemoteRepository
 
 /**
@@ -11,5 +11,7 @@ class RepositoryImpl : Repository {
 
     internal var remote : RemoteRepository = RemoteRepository()
 
-    override fun getNews(page: Int): Observable<List<News>> = remote.getNews(page)
+    override fun getNews(page: Int): Observable<List<NewsPreview>> =
+            remote.getNews(page)
+                    .map { it.filter { preview -> preview.tag.name != "игры" } }
 }
