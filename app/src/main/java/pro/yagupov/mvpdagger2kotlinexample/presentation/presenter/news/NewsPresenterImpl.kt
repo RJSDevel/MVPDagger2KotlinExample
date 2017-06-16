@@ -7,4 +7,13 @@ import pro.yagupov.mvpdagger2kotlinexample.presentation.view.NewsView
  * Created by developer on 07.06.17.
  */
 class NewsPresenterImpl : BasePresenterImpl<NewsView>(), NewsPresenter {
+
+    override fun doInject() {
+        di().inject(this)
+    }
+
+    override fun onCreate() {
+        repo().getNews(view().getContentUrl())
+                .subscribe { view().showContent(it) }
+    }
 }

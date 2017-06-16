@@ -19,13 +19,13 @@ class MainViewPresenterImpl : BasePresenterImpl<MainView>(), MainViewPresenter {
 
     override fun loadFirstPage() {
         page = 0
-        repo().getNews(page).subscribe {
+        repo().getNewsPreviews(page).subscribe {
             view().showNews(it, false)
         }
     }
 
     override fun loadNextPage() {
-        repo().getNews(++page).subscribe {
+        repo().getNewsPreviews(++page).subscribe {
             view().showNews(it, page > PAGE_COUNT)
         }
     }

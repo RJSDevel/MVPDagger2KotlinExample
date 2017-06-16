@@ -6,6 +6,7 @@ import pro.yagupov.mvpdagger2kotlinexample.MVPExample
 import pro.yagupov.mvpdagger2kotlinexample.di.module.AppModule
 import pro.yagupov.mvpdagger2kotlinexample.di.module.PresenterModule
 import pro.yagupov.mvpdagger2kotlinexample.presentation.presenter.main.MainViewPresenterImpl
+import pro.yagupov.mvpdagger2kotlinexample.presentation.presenter.news.NewsPresenterImpl
 import pro.yagupov.mvpdagger2kotlinexample.ui.activity.MainActivity
 import pro.yagupov.mvpdagger2kotlinexample.ui.activity.NewsActivity
 import javax.inject.Singleton
@@ -16,9 +17,9 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = arrayOf(AppModule::class, PresenterModule::class, RepositoryModule::class))
 interface AppComponent {
-
     fun inject(app: MVPExample)
     fun inject(activity: MainActivity)
     fun inject(presenter: MainViewPresenterImpl)
     fun inject(activity: NewsActivity)
+    fun inject(presenter: NewsPresenterImpl)
 }

@@ -1,11 +1,13 @@
 package pro.yagupov.mvpdagger2kotlinexample.adapter
 
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.view_news_item.view.*
-import pro.yagupov.model.repository.remote.NewsPreview
+import pro.yagupov.model.repository.remote.entity.NewsPreview
+import pro.yagupov.mvpdagger2kotlinexample.CONST
 import pro.yagupov.mvpdagger2kotlinexample.R
 import pro.yagupov.mvpdagger2kotlinexample.common.setImage
 import pro.yagupov.mvpdagger2kotlinexample.common.setPassedTime
@@ -42,7 +44,9 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         override fun onClick(v: View?) {
-            NewsActivity().show(v!!.context)
+            val url = Bundle()
+            url.putString(CONST.INTENT.CONTENT_URL, v!!.tag as String)
+            NewsActivity().show(v.context, url)
         }
 
         fun bind(news: NewsPreview) {
@@ -60,6 +64,8 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
                 }
 
                 itemView.passed_time.setPassedTime(news.publishedAt)
+
+                itemView.tag = url
             }
 
             itemView.setOnClickListener(this)

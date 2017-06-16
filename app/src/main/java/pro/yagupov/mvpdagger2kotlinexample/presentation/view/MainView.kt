@@ -1,6 +1,6 @@
 package pro.yagupov.mvpdagger2kotlinexample.presentation.view
 
-import pro.yagupov.model.repository.remote.NewsPreview
+import pro.yagupov.model.repository.remote.entity.NewsPreview
 
 /**
  * Created by developer on 01.06.17.

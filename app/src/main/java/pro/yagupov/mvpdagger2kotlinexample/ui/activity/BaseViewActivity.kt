@@ -20,7 +20,7 @@ abstract class BaseViewActivity<P : BasePresenter> : AppCompatActivity(), BaseVi
 
     override fun show(context: Context, arguments: Bundle?) {
         val intent = Intent(context, javaClass)
-        arguments?.putAll(arguments)
+        arguments.let { intent.putExtras(it) }
         context.startActivity(intent)
     }
 
@@ -30,16 +30,19 @@ abstract class BaseViewActivity<P : BasePresenter> : AppCompatActivity(), BaseVi
 
         doInject()
 
-        pr!!.attachView(this)
+        pr.attachView(this)
 
         onInit()
 
-        pr!!.onCreate()
+        pr.onCreate()
 
     }
 
-    protected fun argument(name: String): Any {
-        return intent.extras[name]
+    open fun onInit() {}
+
+    @Suppress("UNCHECKED_CAST")
+    protected fun <T> argument(name: String): T {
+        return intent.extras[name] as T
     }
 
     fun pr(): P {
@@ -52,5 +55,4 @@ abstract class BaseViewActivity<P : BasePresenter> : AppCompatActivity(), BaseVi
 
     abstract fun getLayoutId(): Int
     abstract fun doInject()
-    abstract fun onInit()
 }

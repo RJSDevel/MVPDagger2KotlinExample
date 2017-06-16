@@ -4,7 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
-import pro.yagupov.model.repository.remote.NewsPreview
+import pro.yagupov.model.repository.remote.entity.NewsPreview
 import pro.yagupov.mvpdagger2kotlinexample.R
 import pro.yagupov.mvpdagger2kotlinexample.adapter.NewsAdapter
 import pro.yagupov.mvpdagger2kotlinexample.presentation.presenter.main.MainViewPresenter
